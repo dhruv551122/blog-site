@@ -1,16 +1,22 @@
-import React from 'react'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
 
 function Layout() {
+    const isAuthenticated = JSON.parse(sessionStorage.getItem('isLoggedIn'))
+
     return (
-        <div className='pl-20 pr-20 pt-10'>
-            <Nav />
-            <Outlet />
-            <Footer />
-        </div>
+        isAuthenticated ? (
+            <div className='relative'>
+                <Nav />
+                <div className='py-6 px-4 font-nunito pb-100' >
+                    <Outlet />
+                </div >
+                <Footer />
+            </div>)
+            : <Navigate to='/login'></Navigate>
     )
+
 }
 
 export default Layout

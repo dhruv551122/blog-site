@@ -1,9 +1,9 @@
-import { useContext, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { userContext } from "./UserContext.js"
 
-export default function Login() {
-    const { login } = useContext(userContext)
+export default function Login(
+
+) {
     const navigate = useNavigate()
     const [users, setUsers] = useState()
     const usernameRef = useRef()
@@ -25,7 +25,6 @@ export default function Login() {
             sessionStorage.setItem('currentUser', JSON.stringify(userD))
             sessionStorage.setItem('isLoggedIn', JSON.stringify(true))
             console.log(JSON.parse(sessionStorage.getItem('currentUser')))
-            login(JSON.parse(sessionStorage.getItem('currentUser')))
             navigate('/')
         } else {
             errorRef.current.style = 'opacity: 1'
